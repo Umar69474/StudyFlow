@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="StudyFlow helps students organise assignments, study sessions and exam deadlines.">
+  <title>StudyFlow — Student Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">S</span><span>StudyFlow</span></div>
+    <p class="nav-label">WORKSPACE</p>
+    <button class="nav-item active" data-view="dashboard"><span>▦</span> Dashboard</button>
+    <button class="nav-item" data-view="tasks"><span>✓</span> My tasks</button>
+    <button class="nav-item" data-view="schedule"><span>▤</span> Study schedule</button>
+    <div class="sidebar-bottom">
+      <div class="tip-icon">✦</div>
+      <strong>Small steps add up.</strong>
+      <p>Focus on one task at a time. You've got this!</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow" id="today-label">YOUR STUDY SPACE</p><h1 id="page-title">Dashboard</h1></div>
+      <button class="primary-btn" id="open-add">＋ Add a task</button>
+    </header>
+
+    <section class="welcome">
+      <div><p class="eyebrow light">YOUR PERSONAL STUDY PLANNER</p><h2>Make room for progress.</h2><p>Plan your work, track your deadlines, and celebrate every step.</p></div>
+      <div class="welcome-art" aria-hidden="true"><span>✦</span><div class="book">📚</div><div class="spark">✧</div></div>
+    </section>
+
+    <section class="stats" aria-label="Task summary">
+      <article class="stat-card"><div class="stat-top"><span>Total tasks</span><span class="stat-icon purple">▤</span></div><strong id="total-count">0</strong><small>In your planner</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Completed</span><span class="stat-icon green">✓</span></div><strong id="done-count">0</strong><small>Tasks finished</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Upcoming</span><span class="stat-icon orange">◷</span></div><strong id="upcoming-count">0</strong><small>Not completed yet</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Progress</span><span class="stat-icon blue">↗</span></div><strong id="progress-count">0%</strong><div class="progress-track"><span id="progress-bar"></span></div></article>
+    </section>
+
+    <section class="content-grid">
+      <div class="panel task-panel">
+        <div class="panel-heading"><div><h3 id="list-heading">Your tasks</h3><p>Keep your next steps clear and manageable.</p></div><button class="text-btn" id="view-all">View all →</button></div>
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="all">All tasks</button>
+          <button class="filter" data-filter="active">To do</button>
+          <button class="filter" data-filter="done">Completed</button>
+        </div>
+        <div id="task-list" class="task-list"></div>
+        <div id="empty-state" class="empty-state"><div class="empty-icon">✎</div><h4>No tasks yet</h4><p>Add your first task to start planning your study time.</p><button class="primary-btn" id="empty-add">＋ Create a task</button></div>
+      </div>
+      <aside class="panel side-panel">
+        <div class="panel-heading"><div><h3>Study tip</h3><p>A little focus goes a long way.</p></div><span class="stat-icon purple">✦</span></div>
+        <div class="tip-card"><div class="tip-illustration">☕</div><h4>Try a focus session</h4><p>Study for 25 minutes, then take a 5-minute break. Repeat when you're ready.</p><button class="secondary-btn" id="focus-btn">Start 25-min focus</button><div id="focus-status" class="focus-status" aria-live="polite"></div></div>
+        <div class="mini-note"><span>💡</span><p><strong>Planner tip</strong><br>Break large assignments into smaller tasks to make them easier to begin.</p></div>
+      </aside>
+    </section>
+    <footer>StudyFlow · A student project prototype · Your tasks are saved in this browser.</footer>
+  </main>
+
+  <dialog id="task-dialog">
+    <form id="task-form">
+      <div class="dialog-heading"><div><p class="eyebrow">YOUR PLANNER</p><h2 id="dialog-title">Add a task</h2></div><button type="button" class="close-btn" id="close-dialog" aria-label="Close">×</button></div>
+      <label for="task-title">Task name <span>*</span></label>
+      <input id="task-title" name="title" maxlength="100" required placeholder="e.g. Revise chapter 3">
+      <label for="task-subject">Subject</label>
+      <input id="task-subject" name="subject" maxlength="60" placeholder="e.g. Cybersecurity">
+      <div class="form-row">
+        <div><label for="task-date">Due date <span>*</span></label><input id="task-date" name="date" type="date" required></div>
+        <div><label for="task-priority">Priority</label><select id="task-priority" name="priority"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></div>
+      </div>
+      <label for="task-notes">Notes (optional)</label>
+      <textarea id="task-notes" name="notes" rows="3" maxlength="300" placeholder="What do you need to remember?"></textarea>
+      <p id="form-error" class="form-error" role="alert"></p>
+      <div class="dialog-actions"><button type="button" class="secondary-btn" id="cancel-dialog">Cancel</button><button type="submit" class="primary-btn">Save task</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
